@@ -1,0 +1,70 @@
+import { Box, Container, Flex, VStack, Input, InputGroup, InputRightElement, Button, Text, Divider, Heading, Avatar, InputLeftAddon, Stack, IconButton, useToast } from "@chakra-ui/react";
+import { FaPaperPlane, FaUserAlt, FaSearch } from "react-icons/fa";
+
+const Index = () => {
+  const toast = useToast();
+
+  const sendMessage = () => {
+    toast({
+      title: "Message sent.",
+      description: "Your message has been sent.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
+  return (
+    <Container maxW="full" p={0} centerContent overflow="hidden">
+      <Flex h="100vh" w="full" bgColor="gray.100">
+        <VStack w="300px" p={4} spacing={4} bgColor="white" borderRight="1px" borderColor="gray.200">
+          <InputGroup>
+            <InputLeftAddon children={<FaSearch />} />
+            <Input placeholder="Search contacts" />
+          </InputGroup>
+          <Divider />
+          <VStack w="full" overflowY="auto" spacing={4}>
+            {/* This is where you would map through your contacts and display them */}
+            <Flex alignItems="center" w="full" p={3} _hover={{ bgColor: "gray.50" }} cursor="pointer">
+              <Avatar size="sm" name="Kent Dodds" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxLZW50JTIwRG9kZHMlMjBwb3J0cmFpdHxlbnwwfHx8fDE3MTAxMDQ5NTB8MA&ixlib=rb-4.0.3&q=80&w=1080" />
+              <Text ml={3}>Kent Dodds</Text>
+            </Flex>
+            {/* Repeat for other contacts */}
+          </VStack>
+        </VStack>
+
+        <VStack flex="1" spacing={4} p={4} overflowY="auto">
+          <Flex w="full" justifyContent="space-between" alignItems="center">
+            <Flex alignItems="center">
+              <Avatar size="md" name="Ryan Florence" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxSeWFuJTIwRmxvcmVuY2UlMjBwb3J0cmFpdHxlbnwwfHx8fDE3MTAxMDQ5NTB8MA&ixlib=rb-4.0.3&q=80&w=1080" />
+              <Heading ml={3} size="md">
+                Ryan Florence
+              </Heading>
+            </Flex>
+            <IconButton icon={<FaUserAlt />} isRound="true" size="sm" variant="ghost" />
+          </Flex>
+          <Divider />
+          <VStack w="full" flex="1" p={3} overflowY="auto" spacing={4} alignItems="flex-start">
+            {/* This is where you would map through your messages and display them */}
+            <Stack direction="row" alignSelf="flex-end">
+              <Text bgColor="blue.500" color="white" p={2} borderRadius="lg">
+                Hello!
+              </Text>
+            </Stack>
+            {/* Repeat for other messages */}
+          </VStack>
+          <InputGroup size="md">
+            <Input pr="4.5rem" type="text" placeholder="Type a message" />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={sendMessage}>
+                <FaPaperPlane />
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </VStack>
+      </Flex>
+    </Container>
+  );
+};
+
+export default Index;
